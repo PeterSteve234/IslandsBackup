@@ -58,4 +58,44 @@
 
 #endif /* BACKUPPRINCIPES_H */
 
-using namespace std;
+#include <filesystem>
+#include <iostream>
+	
+
+namespace fs= std::filesystem;
+
+std::string nome_arquivo;
+std::string diretorio;
+std::string tipo_extensao;
+
+
+void Arquivo() {
+    std::cout << "digite o nome do arquivo" << nome_arquivo << std::endl;
+    std::cin >> nome_arquivo;
+
+    if(fs::exists(nome_arquivo) ) {
+    std::cout << "é um arquivo" << std::endl;
+    } 
+
+    else if(fs::is_directory(nome_arquivo)){
+    std::cout << "é um diretorio" << std::endl;
+    }
+
+    else {
+    std::cout << "Diretório corrompido ou inexistente" << std::endl;
+    }
+}
+
+void origem_destino () {
+
+}
+
+void verificar_tamanho_do_arquivo () {
+
+}
+
+
+
+int main () {
+	// implementação futura
+}
