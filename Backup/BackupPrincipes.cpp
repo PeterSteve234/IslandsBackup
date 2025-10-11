@@ -70,7 +70,7 @@ std::string tipo_extensao;
 
 
 void Arquivo() {
-    std::cout << "digite o nome do arquivo" << nome_arquivo << std::endl;
+    std::cout << "digite o nome do arquivo";
     std::cin >> nome_arquivo;
 
     if(fs::exists(nome_arquivo) ) {
