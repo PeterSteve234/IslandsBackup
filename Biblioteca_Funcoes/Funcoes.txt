@@ -1,0 +1,408 @@
+
+// -------- Manipulação de memória --------
+memcpy()         // Copia blocos de memória de uma área para outra
+memmove()        // Copia memória com suporte a sobreposição de áreas
+memset()         // Preenche uma área de memória com um valor
+memchr()         // Procura por um byte específico na memória
+memcmp()         // Compara duas áreas de memória
+bzero()          // Zera (define como 0) uma área de memória
+explicit_bzero() // Zera memória de forma segura (não otimizada pelo compilador)
+memalign()       // Aloca memória alinhada a um limite específico
+aligned_alloc()  // Aloca memória alinhada com tamanho múltiplo de alinhamento
+_valloc()        // Aloca memória alinhada a páginas do sistema
+calloc()         // Aloca memória inicializada com zeros
+malloc()         // Aloca memória sem inicializar
+realloc()        // Realoca memória alterando o tamanho de um bloco existente
+free()           // Libera memória alocada dinamicamente
+posix_memalign() // Aloca memória alinhada de forma portável
+mmap()           // Mapeia arquivos ou memória para o espaço de endereços
+munmap()         // Desfaz o mapeamento feito com mmap
+mprotect()       // Define permissões (leitura, escrita, execução) de memória
+mlock()          // Impede que páginas de memória sejam trocadas para disco
+munlock()        // Libera o bloqueio de memória feito com mlock
+
+// -------- Operações de arquivo e diretório --------
+open()           // Abre um arquivo e retorna um descritor
+close()          // Fecha um descritor de arquivo
+read()           // Lê bytes de um arquivo
+write()          // Escreve bytes em um arquivo
+pread()          // Lê bytes de uma posição específica do arquivo
+pwrite()         // Escreve bytes em uma posição específica do arquivo
+lseek()          // Move o ponteiro de leitura/escrita de um arquivo
+stat()           // Obtém informações sobre um arquivo
+fstat()          // Obtém informações de um arquivo aberto
+lstat()          // Obtém informações de um link simbólico
+mkdir()          // Cria um diretório
+rmdir()          // Remove um diretório
+opendir()        // Abre um diretório para leitura
+readdir()        // Lê a próxima entrada de diretório
+closedir()       // Fecha um diretório aberto
+rename()         // Renomeia ou move arquivos
+unlink()         // Remove (deleta) um arquivo
+fsync()          // Força gravação de dados no disco
+fdatasync()      // Força gravação apenas dos dados, não metadados
+sync()           // Força gravação de todos os buffers pendentes no disco
+
+// -------- Controle de processos --------
+fork()           // Cria um novo processo (cópia do processo atual)
+vfork()          // Cria um processo filho compartilhando memória com o pai
+execve()         // Substitui o processo atual por um novo executável
+execl()          // Versão simplificada do execve
+execvp()         // Executa um programa procurando no PATH
+wait()           // Espera um processo filho terminar
+waitpid()        // Espera um processo filho específico terminar
+kill()           // Envia um sinal a um processo
+getpid()         // Obtém o ID do processo atual
+getppid()        // Obtém o ID do processo pai
+setsid()         // Cria uma nova sessão e torna o processo líder
+setpgid()        // Define o grupo de processos de um processo
+getpgid()        // Obtém o grupo de processos de um processo
+getpriority()    // Obtém a prioridade de agendamento de um processo
+setpriority()    // Define a prioridade de agendamento de um processo
+nice()           // Altera a prioridade do processo atual
+ptrace()         // Permite depurar e inspecionar outro processo
+clone()          // Cria processos ou threads de forma flexível (usado no kernel)
+exit()           // Encerra o processo atual
+_Exit()          // Encerra imediatamente o processo (sem limpar buffers)
+
+// -------- Comunicação entre processos --------
+pipe()           // Cria um canal unidirecional entre processos
+dup()            // Duplica um descritor de arquivo
+dup2()           // Duplica descritor para um número específico
+socket()         // Cria um endpoint de comunicação de rede
+bind()           // Associa um socket a um endereço/porta
+listen()         // Coloca um socket em modo de escuta
+accept()         // Aceita uma conexão de entrada em um socket
+connect()        // Conecta um socket a um servidor remoto
+send()           // Envia dados por um socket conectado
+recv()           // Recebe dados de um socket conectado
+sendto()         // Envia dados para um endereço específico
+recvfrom()       // Recebe dados de um endereço específico
+shutdown()       // Fecha parte de uma conexão de socket
+select()         // Espera eventos em múltiplos descritores
+poll()           // Monitora múltiplos descritores de forma eficiente
+epoll_create()   // Cria uma instância de epoll
+epoll_ctl()      // Controla descritores monitorados pelo epoll
+epoll_wait()     // Espera eventos no epoll
+eventfd()        // Cria um descritor para eventos de sinalização
+signalfd()       // Recebe sinais via descritor de arquivo
+
+// -------- Sinais --------
+signal()         // Define um manipulador de sinal
+sigaction()      // Define manipulador de sinal de forma mais completa
+sigemptyset()    // Inicializa um conjunto de sinais vazio
+sigfillset()     // Inicializa um conjunto com todos os sinais
+sigaddset()      // Adiciona um sinal a um conjunto
+sigdelset()      // Remove um sinal de um conjunto
+sigprocmask()    // Bloqueia/desbloqueia sinais do processo
+sigsuspend()     // Suspende até receber um sinal
+sigpending()     // Obtém sinais pendentes
+raise()          // Envia um sinal para o processo atual
+abort()          // Aborta imediatamente o programa
+⚙️ Funções 81-160 - Comentadas
+c
+// -------- Controle de threads --------
+pthread_create()      // Cria uma nova thread
+pthread_exit()        // Encerra a thread atual
+pthread_join()        // Espera uma thread terminar
+pthread_detach()      // Marca thread para liberar recursos automaticamente
+pthread_self()        // Retorna o ID da thread atual
+pthread_equal()       // Compara dois IDs de threads
+pthread_cancel()      // Solicita cancelamento de uma thread
+pthread_setcancelstate()  // Define se cancelamento está habilitado
+pthread_setcanceltype()   // Define quando cancelamento é entregue
+pthread_testcancel()      // Verifica se há pedido de cancelamento pendente
+
+// -------- Mutexes (exclusão mútua) --------
+pthread_mutex_init()      // Inicializa um mutex
+pthread_mutex_destroy()   // Destroi um mutex
+pthread_mutex_lock()      // Bloqueia um mutex
+pthread_mutex_trylock()   // Tenta bloquear mutex (não bloqueia se ocupado)
+pthread_mutex_unlock()    // Desbloqueia um mutex
+
+// -------- Variáveis de condição --------
+pthread_cond_init()       // Inicializa uma variável de condição
+pthread_cond_destroy()    // Destroi uma variável de condição
+pthread_cond_wait()       // Espera um sinal em uma variável de condição
+pthread_cond_timedwait()  // Espera um sinal até um tempo limite
+pthread_cond_signal()     // Acorda uma thread esperando em variável de condição
+pthread_cond_broadcast()  // Acorda todas threads esperando em variável de condição
+
+// -------- Semáforos --------
+sem_init()        // Inicializa um semáforo
+sem_destroy()     // Destroi um semáforo
+sem_wait()        // Decrementa semáforo, bloqueando se zero
+sem_trywait()     // Decrementa sem bloquear (falha se zero)
+sem_post()        // Incrementa o semáforo (libera recurso)
+sem_getvalue()    // Obtém o valor atual do semáforo
+
+// -------- Controle de tempo --------
+time()            // Obtém tempo atual em segundos desde Epoch
+gettimeofday()    // Obtém tempo atual com precisão de microssegundos
+clock_gettime()   // Obtém tempo de relógios específicos
+clock_settime()   // Define o tempo de um relógio
+sleep()           // Suspende execução por segundos
+usleep()          // Suspende execução por microssegundos
+nanosleep()       // Suspende por nanosegundos
+alarm()           // Agenda sinal SIGALRM para disparar após segundos
+setitimer()       // Configura temporizador para sinais periódicos
+getitimer()       // Obtém configuração atual de temporizador
+
+// -------- Controle de usuários e permissões --------
+getuid()          // Obtém o ID do usuário atual
+geteuid()         // Obtém o ID efetivo do usuário
+getgid()          // Obtém o ID do grupo atual
+getegid()         // Obtém o ID efetivo do grupo
+setuid()          // Define o ID do usuário do processo
+seteuid()         // Define o ID efetivo do usuário
+setgid()          // Define o ID do grupo do processo
+setegid()         // Define o ID efetivo do grupo
+chmod()           // Altera permissões de um arquivo
+fchmod()          // Altera permissões usando descritor
+chown()           // Altera dono de um arquivo
+fchown()          // Altera dono usando descritor
+umask()           // Define máscara de criação de arquivos
+
+// -------- Entradas e saídas de terminal --------
+isatty()          // Verifica se descritor é um terminal
+ttyname()         // Obtém o nome do terminal de um descritor
+tcgetattr()       // Obtém atributos do terminal
+tcsetattr()       // Define atributos do terminal
+cfmakeraw()       // Configura terminal no modo bruto
+cfsetispeed()     // Define velocidade de entrada
+cfsetospeed()     // Define velocidade de saída
+tcflush()         // Limpa buffers do terminal
+tcsendbreak()     // Envia sinal de break no terminal
+tcdrain()         // Espera saída pendente no terminal
+
+// -------- Mapeamento e paginação --------
+mlockall()        // Bloqueia todas páginas de memória do processo
+munlockall()      // Desbloqueia todas páginas de memória
+madvise()         // Dá dicas de uso de memória ao kernel
+mincore()         // Verifica quais páginas estão em RAM
+getpagesize()     // Obtém tamanho da página de memória
+posix_fadvise()   // Dá dicas de uso de arquivo ao kernel
+posix_fallocate() // Reserva espaço para arquivo
+
+// -------- Criptografia e segurança --------
+getrandom()       // Gera bytes aleatórios seguros do kernel
+arc4random()      // Gera números aleatórios criptograficamente seguros
+RAND_bytes()      // (OpenSSL) Gera bytes aleatórios seguros
+SHA256_Init()     // (OpenSSL) Inicializa contexto SHA256
+SHA256_Update()   // Atualiza hash SHA256 com dados
+SHA256_Final()    // Finaliza hash SHA256 e obtém resultado
+HMAC()            // Gera hash HMAC de dados
+EVP_EncryptInit() // Inicializa criptografia simétrica
+EVP_EncryptUpdate() // Criptografa blocos de dados
+EVP_EncryptFinal() // Finaliza criptografia
+EVP_DecryptInit() // Inicializa descriptografia
+EVP_DecryptUpdate() // Descriptografa blocos
+EVP_DecryptFinal() // Finaliza descriptografia
+💻 Exemplos Práticos de Uso
+📁 Gerenciamento de Arquivos
+cpp
+namespace fs = std::filesystem;
+
+// Operações com arquivos
+std::rename("antigo.txt", "novo.txt");                    // renomear arquivo
+std::remove("arquivo.txt");                               // apagar arquivo
+fs::exists("caminho");                                    // verificar se existe
+fs::file_size("arquivo.txt");                             // tamanho do arquivo em bytes
+fs::permissions("arquivo.txt", fs::perms::owner_all);     // alterar permissões
+fs::last_write_time("arquivo.txt");                       // pegar última modificação
+fs::copy("origem", "destino", fs::copy_options::recursive); // copiar pasta
+
+// POSIX file operations
+open("arquivo.bin", O_CREAT | O_WRONLY, 0644);           // abrir arquivo com permissões
+chmod("arquivo.txt", 0600);                              // mudar permissões no estilo Unix
+chown("arquivo.txt", 1000, 1000);                        // mudar dono e grupo
+stat("arquivo.txt", &st);                                // pegar metadados de arquivo
+utime("arquivo.txt", nullptr);                           // atualizar timestamps
+🔄 Processos e Threads
+cpp
+// Threads C++
+std::this_thread::sleep_for(std::chrono::seconds(2));    // pausar thread
+std::thread t(funcao);                                   // criar thread
+t.join();                                                // aguardar thread
+
+// Threads POSIX
+pthread_create(&tid, nullptr, minhaFuncao, nullptr);     // criar thread POSIX
+pthread_cancel(tid);                                     // cancelar thread
+pthread_kill(tid, SIGTERM);                              // enviar sinal a thread
+pthread_detach(tid);                                     // desvincular thread
+
+// Processos
+pid_t pid = fork();                                      // criar processo
+execl("/bin/ls", "ls", "-l", NULL);                      // executar programa
+kill(pid, SIGKILL);                                      // matar processo
+getpid();                                                // pegar PID atual
+getppid();                                               // pegar PID do pai
+getuid();                                                // pegar ID do usuário
+setuid(0);                                               // trocar usuário (root)
+🌐 Rede e Sockets
+cpp
+// Criação e configuração de sockets
+socket(AF_INET, SOCK_STREAM, 0);                         // criar socket TCP
+bind(sockfd, (sockaddr*)&addr, sizeof(addr));            // associar endereço
+listen(sockfd, 5);                                       // modo servidor
+accept(sockfd, nullptr, nullptr);                        // aceitar conexão
+connect(sockfd, (sockaddr*)&addr, sizeof(addr));         // conectar ao servidor
+
+// Comunicação
+send(sockfd, buffer, len, 0);                            // enviar dados
+recv(sockfd, buffer, len, 0);                            // receber dados
+shutdown(sockfd, SHUT_RDWR);                             // encerrar conexão
+close(sockfd);                                           // fechar socket
+
+// Utilitários de rede
+inet_addr("127.0.0.1");                                  // converter IP para binário
+inet_ntoa(in_addr);                                      // converter IP para string
+gethostname(host, sizeof(host));                         // pegar nome do host
+gethostbyname("www.site.com");                           // resolver DNS
+💾 Memória e Mapeamento
+cpp
+// Alocação básica
+malloc(1024);                                            // alocar memória heap
+calloc(1, 1024);                                         // alocar memória zerada
+realloc(ptr, 2048);                                      // redimensionar memória
+free(ptr);                                               // liberar memória
+
+// Manipulação de memória
+memset(buffer, 0, 1024);                                 // zerar memória
+memcpy(dest, src, 1024);                                 // copiar memória
+memcmp(buf1, buf2, 1024);                                // comparar blocos
+
+// Mapeamento avançado
+mmap(nullptr, 4096, PROT_READ|PROT_WRITE, MAP_SHARED, fd, 0); // mapear arquivo
+munmap(ptr, 4096);                                       // desmapear
+mlock(ptr, 4096);                                        // travar na RAM
+munlock(ptr, 4096);                                      // destravar da RAM
+🔒 Segurança e Criptografia
+cpp
+// Hashing
+SHA256_CTX ctx;                                          // criar contexto SHA256
+SHA256_Init(&ctx);                                       // iniciar hash
+SHA256_Update(&ctx, dados, tamanho);                     // atualizar hash com dados
+SHA256_Final(resultado, &ctx);                           // finalizar hash
+
+// Controle de acesso
+umask(0077);                                             // definir máscara de criação
+setgid(0);                                               // mudar grupo efetivo
+seteuid(0);                                              // mudar usuário efetivo
+getgrnam("root");                                        // obter grupo pelo nome
+getpwnam("usuario");                                     // obter usuário pelo nome
+crypt("senha", "sal");                                   // gerar hash de senha
+getpass("Senha: ");                                      // ler senha oculta
+⚡ Sinais e Monitoramento
+cpp
+// Tratamento de sinais
+signal(SIGINT, handler);                                 // tratar Ctrl+C
+signal(SIGTERM, handler);                                // tratar encerramento
+sigaction(SIGSEGV, &act, nullptr);                       // tratar falha de segmentação
+
+// Temporização
+alarm(5);                                                // definir alarme de 5 segundos
+pause();                                                 // esperar sinal
+sleep(10);                                               // pausar processo
+gettimeofday(&tv, nullptr);                              // pegar tempo atual
+clock_gettime(CLOCK_REALTIME, &ts);                      // tempo em nanossegundos
+📂 Diretórios
+cpp
+mkdir("nova_pasta", 0755);                               // criar pasta
+rmdir("pasta");                                          // remover pasta vazia
+opendir("pasta");                                        // abrir pasta
+readdir(dp);                                             // ler entradas da pasta
+closedir(dp);                                            // fechar pasta
+⌨️ Fluxo de Entrada/Saída
+cpp
+std::cin.getline(buffer, 256);                           // ler linha do terminal
+std::cout << "texto\n";                                  // escrever no terminal
+scanf("%d", &num);                                       // ler inteiro do terminal
+printf("valor: %d\n", num);                              // escrever valor no terminal
+fflush(stdout);                                          // forçar saída
+// ...existing code...
+⚙️ Funções 161-240 - Comentadas (adicionadas)
+/*
+sendmsg()         // Envia mensagem por socket com suporte a scatter/gather
+recvmsg()         // Recebe mensagem por socket com suporte a scatter/gather
+sendmmsg()        // Envia múltiplas mensagens de uma vez (Linux)
+recvmmsg()        // Recebe múltiplas mensagens de uma vez (Linux)
+getsockopt()      // Obtém opções/configurações de um socket
+setsockopt()      // Define opções/configurações de um socket
+socketpair()      // Cria um par de sockets conectados localmente
+getaddrinfo()     // Resolve nomes/serviços (suporta IPv4/IPv6)
+freeaddrinfo()    // Libera estrutura retornada por getaddrinfo
+getnameinfo()     // Converte sockaddr em nome de host/porta
+gethostbyname()   // Resolve hostname (API antiga/obsoleta)
+gethostbyaddr()   // Resolve endereço para hostname (API antiga)
+getifaddrs()      // Obtém lista de interfaces de rede e endereços
+freeifaddrs()     // Libera lista retornada por getifaddrs
+ioctl()           // Controle de dispositivos e interfaces (I/O control)
+fcntl()           // Operações e flags em descritores de arquivo
+dup3()            // Duplica descritor com flags (ex.: O_CLOEXEC)
+accept4()         // accept com flags (ex.: SOCK_NONBLOCK)
+pipe2()           // Cria pipe com flags (ex.: O_NONBLOCK)
+splice()          // Move dados entre descritores sem copiar para usuário
+tee()              // Duplica dados entre pipes sem consumir
+vmsplice()        // Mapeia buffer do usuário em um pipe
+sendfile()        // Envia arquivo diretamente para socket (zero-copy)
+fallocate()       // Pré-aloca espaço em arquivo
+readahead()       // Pré-carrega páginas de arquivo no cache
+sync_file_range() // Sincroniza faixa de arquivo para disco
+truncate()        // Ajusta tamanho de arquivo (por caminho)
+ftruncate()       // Ajusta tamanho de arquivo (por descritor)
+creat()           // Cria arquivo (abre com O_CREAT)
+mknod()           // Cria nó de dispositivo ou FIFO
+mknodat()         // mknod relativo a diretório (versão *at)
+openat()          // open relativo a um diretório base
+mkdirat()         // mkdir relativo a um diretório base
+unlinkat()        // unlink relativo a um diretório base
+linkat()          // cria link relativo a diretório base
+symlinkat()       // cria symlink relativo a diretório base
+faccessat()       // verifica acesso relativo a diretório base
+utimensat()       // altera timestamps com precisão nanosegundos (versão *at)
+scandir()         // Lista diretório com filtro e ordenação
+nftw()            // Percorre árvore de diretórios (recursivo)
+realpath()        // Resolve caminho canônico absoluto
+canonicalize_file_name() // Similar a realpath (GNU)
+access()          // Verifica permissões de acesso a arquivo
+chroot()          // Altera raiz do processo (chroot jail)
+pivot_root()      // Troca raiz do sistema (uso privilegiado)
+mount()           // Monta filesystem (requere privilégios)
+umount()          // Desmonta filesystem
+setns()           // Entra em namespace (Linux)
+clone3()          // Versão moderna do clone (Linux)
+prctl()           // Controla comportamento do processo no kernel
+syscall()         // Invoca syscall por número diretamente
+gettid()          // Obtém ID do thread (tid, syscall)
+tgkill()          // Envia sinal para thread específica em PID
+prlimit()         // Obtém/define limites (rlimit) para outro processo
+getrlimit()       // Obtém limites de recursos do processo
+setrlimit()       // Define limites de recursos do processo
+dlopen()          // Carrega biblioteca dinâmica em tempo de execução
+dlclose()         // Fecha biblioteca dinâmica carregada
+dlsym()           // Resolve símbolo em biblioteca dinâmica
+dlerror()         // Obtém última mensagem de erro do loader dinâmico
+backtrace()       // Captura pilha de chamadas (glibc)
+backtrace_symbols()// Converte endereços de pilha em strings legíveis
+setenv()          // Define variável de ambiente
+getenv()          // Lê variável de ambiente
+unsetenv()        // Remove variável de ambiente
+clearenv()        // Limpa todas variáveis de ambiente
+asprintf()        // Aloca string formatada (malloc dentro)
+vasprintf()       // Versão va_list de asprintf
+snprintf()        // Escreve formatado com tamanho máximo
+vsnprintf()       // Versão va_list de snprintf
+getline()         // Lê linha alocando buffer automaticamente
+strtok_r()        // Tokeniza string de forma reentrante (thread-safe)
+memrchr()         // Procura um byte na memória em ordem reversa
+memccpy()         // Copia até encontrar um byte específico
+strlcpy()         // Cópia segura de strings (BSD)
+strlcat()         // Concatenação segura de strings (BSD)
+strerror_r()      // Versão reentrante de strerror
+perror()          // Imprime mensagem de erro baseada em errno
+strerror()        // Converte errno para mensagem textual
+regcomp()         // Compila expressão regular POSIX
+regexec()         // Executa regex compilada
+regfree()         // Libera recursos da regex compilada
+*/
