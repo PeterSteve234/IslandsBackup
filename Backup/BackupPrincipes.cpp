@@ -57,3 +57,5 @@
 #include <sys/utsname.h>  // uname (info do sistema)
 
 #endif /* BACKUPPRINCIPES_H */
+
+using namespace std;
