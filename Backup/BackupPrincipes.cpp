@@ -33,69 +33,51 @@
 /* Threading / concurrency */
 #include <pthread.h>      // pthreads, mutex, cond
 
-/* Networking (para backup remoto) */
-#include <sys/socket.h>
-#include <netinet/in.h>
-#include <arpa/inet.h>
-#include <netdb.h>        // getaddrinfo
-
-/* Compression / archiving (libs externas) */
-/* Requer link com -lz, -llzma, -larchive, etc. */
-#include <zlib.h>         // gzip/deflate
-#include <lzma.h>         // xz/lzma (opcional)
-#include <archive.h>      // libarchive (tar/zip/auto)
-#include <archive_entry.h>
-
-/* Crypto / checksums (libs externas) */
-/* Requer link com -lcrypto (OpenSSL) ou libs como libgcrypt */
-#include <openssl/evp.h>   // cifragem/decifragem
-#include <openssl/sha.h>   // SHA checksums
-
-/* Utilities */
-#include <stdbool.h>      // bool
-#include <limits.h>       // PATH_MAX
-#include <sys/utsname.h>  // uname (info do sistema)
-
-#endif /* BACKUPPRINCIPES_H */
-
+// Minimal, portable implementation for testing/building
+#include "..\Headers\BackupPrincipes.h"
 #include <filesystem>
 #include <iostream>
-	
+#include <string>
 
-namespace fs= std::filesystem;
-
-std::string nome_arquivo;
-std::string diretorio;
-std::string tipo_extensao;
-
+namespace fs = std::filesystem;
 
 void Arquivo() {
-    std::cout << "digite o nome do arquivo";
-    std::cin >> nome_arquivo;
+    std::string nome_arquivo;
+    std::cout << "Digite o nome do arquivo ou diretório: ";
+    if (!(std::cin >> nome_arquivo)) {
+        std::cerr << "Erro ao ler o nome do arquivo." << std::endl;
+        return;
+    }
 
-    if(fs::exists(nome_arquivo) ) {
-    std::cout << "é um arquivo" << std::endl;
-    } 
+    std::error_code ec;
+    if (fs::exists(nome_arquivo, ec)) {
+        if (fs::is_regular_file(nome_arquivo, ec)) {
+            std::cout << "É um arquivo." << std::endl;
+        } else if (fs::is_directory(nome_arquivo, ec)) {
+            std::cout << "É um diretório." << std::endl;
+        } else {
+            std::cout << "Existe, mas não é arquivo nem diretório regular." << std::endl;
+        }
+    } else {
+        std::cout << "Diretório/arquivo inexistente ou inacessível." << std::endl;
+    }
+}
 
-    else if(fs::is_directory(nome_arquivo)){
+void origem() {
+    // stub: implementar origem do backup
+}
+
+void destino() {
+    // stub: implementar destino do backup
+}
+
+void verificar_tamanho_do_arquivo() {
+    // stub: implementar verificação de tamanho
+}
+
+int main() {
+    std::cout << "IslandsBackup - teste básico\n";
+    Arquivo();
+    return 0;
+}
     std::cout << "é um diretorio" << std::endl;
-    }
-
-    else {
-    std::cout << "Diretório corrompido ou inexistente" << std::endl;
-    }
-}
-
-void origem_destino () {
-
-}
-
-void verificar_tamanho_do_arquivo () {
-
-}
-
-
-
-int main () {
-	// implementação futura
-}
