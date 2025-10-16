@@ -1,63 +1,9 @@
 #ifndef BACKUPPRINCIPES_H
 #define BACKUPPRINCIPES_H
 
-/* Standard C */
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <stdint.h>
-#include <errno.h>
-
-/* POSIX / system calls */
-#include <unistd.h>
-#include <fcntl.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <dirent.h>
-#include <utime.h>
-#include <pwd.h>
-#include <grp.h>
-#include <time.h>
-#include <signal.h>
-#include <sys/wait.h>
-
-/* Advanced I/O / performance */
-#include <sys/sendfile.h>
-#include <sys/mman.h>
-#include <sys/statvfs.h>
-
-/* Extended attributes / ACLs */
-#include <sys/xattr.h>
-#include <acl/libacl.h>
-
-/* Threading / concurrency */
-#include <pthread.h>
-
-/* Networking */
-#include <sys/socket.h>
-#include <netinet/in.h>
-#include <arpa/inet.h>
-#include <netdb.h>
-
-/* Compression / archiving */
-#include <zlib.h>
-#include <lzma.h>
-#include <archive.h>
-#include <archive_entry.h>
-
-/* Crypto / checksums */
-#include <openssl/evp.h>
-#include <openssl/sha.h>
-
-/* Utilities */
-#include <stdbool.h>
-#include <limits.h>
-#include <sys/utsname.h>
-
-#endif /* BACKUPPRINCIPES_H */
-
-#include <filesystem>
 #include <iostream>
+#include <string>
+#include <filesystem>
 
 namespace fs = std::filesystem;
 
