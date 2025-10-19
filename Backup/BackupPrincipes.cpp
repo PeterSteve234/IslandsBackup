@@ -78,7 +78,12 @@ static std::string human_read_size(uintmax_t bytes) {
 };
 
 void iterar_diretorios() {
-
+std::string identificador = ler_caminho();
+    if(fs::is_directory(identificador) {
+        for(const auto& entry : std::filesystem::directory_iterator(identificador)) {
+        std::cout << entry.ṕath().filename() << std::endl;
+        }
+    return 0;
 }
 
 void verificar_tamanho_do_arquivo () {
@@ -90,8 +95,8 @@ void verificar_tamanho_do_arquivo () {
     std::cout << "Confirma este arquivo?" << std::endl;
     b.confirmarOrigem();
     b.human_read_size();
-
 }
+
 
 // ------------------------------------
 // Função principal
