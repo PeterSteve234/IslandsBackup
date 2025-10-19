@@ -77,14 +77,7 @@ static std::string human_read_size(uintmax_t bytes) {
     }
 };
 
-void iterar_diretorios() {
-std::string identificador = ler_caminho();
-    if(fs::is_directory(identificador) {
-        for(const auto& entry : std::filesystem::directory_iterator(identificador)) {
-        std::cout << entry.ṕath().filename() << std::endl;
-        }
-    return 0;
-}
+
 
 void verificar_tamanho_do_arquivo () {
     std::string nome_arquivo;
@@ -97,6 +90,15 @@ void verificar_tamanho_do_arquivo () {
     b.human_read_size();
 }
 
+void iterar_diretorios() {
+std::string identificador = ler_caminho();
+    if(fs::is_directory(identificador) {
+        for(const auto& entry : std::filesystem::directory_iterator(identificador)) {
+        std::cout << entry.ṕath().filename() << std::endl;
+        }
+    return 0;
+}
+
 
 // ------------------------------------
 // Função principal
@@ -107,6 +109,7 @@ int main() {
     b.verificarTipo();
     b.confirmarOrigem();
     b.human_read_size();
+    b.iterar_diretorios();
 
     return 0;
 }
